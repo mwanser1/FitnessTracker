@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.mwanser.fitnesstracker" >
+    package="android.mwanser.fitnesstracker">
 
     <application
         android:allowBackup="true"
@@ -8,17 +8,65 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".GridActivity"
+            android:label="Fitness Tracker Main"
+            android:parentActivityName=".LoginActivity">
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login"
+
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CalorieView"
+            android:label="Calorie View"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".EditInfo"
+            android:label="Edit Personal Information"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".FitnessTest"
+            android:label="Fitness test"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".PerformGPSRun"
+            android:label="Run Brah"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".PerformWorkout"
+            android:label="Lift Brah"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".ViewWorkout"
+            android:label="View Prior Workouts"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".BluetoothConnect"
+            android:label="Bluetooth Connect"
+            android:parentActivityName=".GridActivity">
+        </activity>
+        <activity
+            android:name=".RegisterNewClient"
+            android:label="Register New Client"
+            android:parentActivityName=".LoginActivity">
+        </activity>
+
     </application>
 
 </manifest>
