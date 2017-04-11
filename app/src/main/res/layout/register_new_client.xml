@@ -1,6 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
 
-</LinearLayout>
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/register_lbl_email1"
+                android:text="Email"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_text_email1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/register_lbl_email2"
+                android:text="Email"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_text_email2"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/register_lbl_password"
+                android:text="Password"
+                />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_text_password"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/register_lbl_password2"
+                android:text="Password"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_text_password2"
+                android:inputType="textPassword"/>
+        </LinearLayout>
+        <!--<CheckBox-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:id="@+id/register_combo_gender"-->
+            <!--/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+           <TextView
+               android:layout_width="75dp"
+               android:layout_height="75dp"
+               android:text="Age:"/>
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_spinner_age"
+
+                >
+            </Spinner>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:id="@+id/register_radio_gender_group"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center">
+            <!--android:checkedButton="@+id/register_radio_other"-->
+
+            <RadioButton android:id="@+id/register_radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:onClick="onRadioButtonClicked"
+                android:padding="15dp"/>
+            <RadioButton android:id="@+id/register_radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:onClick="onRadioButtonClicked"
+                android:padding="15dp"/>
+            <RadioButton android:id="@+id/register_radio_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:onClick="onRadioButtonClicked"
+                android:padding="15dp"/>
+
+
+        </RadioGroup>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:id="@+id/register_radio_unit_group"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            android:layout_gravity="center"
+            android:checkedButton="@+id/register_radio_imperial">
+
+        <RadioButton android:id="@+id/register_radio_imperial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Imperial"
+            android:onClick="onRadioButtonClicked"
+            android:padding="15dp"/>
+        <RadioButton android:id="@+id/register_radio_metric"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metric"
+            android:onClick="onRadioButtonClicked"
+            android:padding="15dp"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/register_lbl_weight"
+                android:text="Weight"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_text_weight"
+                android:inputType="number"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:id="@+id/register_lbl_height"
+                android:text="Height"/>
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/register_spinner_height"
+
+                >
+            </Spinner>
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:id="@+id/register_button_save"
+            android:text="Create"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:id="@+id/register_button_cancel"
+            android:text="Cancel"/>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

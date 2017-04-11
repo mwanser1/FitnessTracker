@@ -1,6 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
 
-</LinearLayout>
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:id="@+id/edit_lbl_email1"
+                android:text="Email"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_email1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:id="@+id/edit_lbl_Opassword"
+                android:text="Old Password"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_Opassword"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:id="@+id/edit_lbl_password"
+                android:text="New Password"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_password"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:id="@+id/edit_lbl_password2"
+                android:text="Confrim Password"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_password2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:text="Age:"/>
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_spinner_age"
+
+                >
+            </Spinner>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:id="@+id/edit_radio_gender_group"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:checkedButton="@+id/edit_radio_other">
+            <RadioButton android:id="@+id/edit_radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:onClick="onRadioButtonClicked"
+                android:padding="15dp"/>
+            <RadioButton android:id="@+id/edit_radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:onClick="onRadioButtonClicked"
+                android:padding="15dp"/>
+            <RadioButton android:id="@+id/edit_radio_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:onClick="onRadioButtonClicked"
+                android:padding="15dp"/>
+
+
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:id="@+id/edit_lbl_resting_hr"
+                android:text="Resting Heart Rate"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_resting_hr"
+                android:inputType="number"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="75dp"
+                android:id="@+id/edit_lbl_votwo"
+                android:text="VO2 MAX"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_votwo"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:id="@+id/edit_button_save"
+            android:text="Update"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:id="@+id/edit_button_cancel"
+            android:text="Cancel"/>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

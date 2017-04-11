@@ -1,6 +1,8 @@
 package android.mwanser.fitnesstracker;
 
 import android.content.Intent;
+import android.mwanser.PreferenceUtils;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -13,6 +15,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
     private static final ArrayList<String[]> FAKE_CRED= new ArrayList<>();
+    private FileManipulator loginFile;
 
 
     @Override
@@ -38,11 +49,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
         Log.d("**LoginActivity","onCreate");
-
+        PreferenceUtils.setUserLoggedIn(this,-1);
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        loginFile= new FileManipulator("loginCred.txt");
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -52,16 +64,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         Button mRegisterButton= (Button) findViewById(R.id.email_register_button);
-        //TODO: REGISTER PAGE
+
         mRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Register Clicked and Not Implemented.",
-                        Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), RegisterNewClient.class);
                 startActivity(intent);
             }
         });
+
+        PreferenceUtils.setUserLearnedNavigation(this, false);
+
 
         FAKE_CRED.add(new String[]{"jake@unh.com","jakejake"});
         FAKE_CRED.add(new String[]{"bob@unh.com","bobbob"});
@@ -73,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        int loggedIn=-1;
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
@@ -97,18 +111,22 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
             return;
         }else {
-            for(String[] e : FAKE_CRED){
-                if(e[0].equals(email)&&e[1].equals(password)){
-                    successful=true;
-                    break;
+                //check file
+                loggedIn=loginFile.checkCredentials(email,password);
+                if(loggedIn!=-1) {
+                    successful = true;
+                    PreferenceUtils.setUserLoggedIn(this,loggedIn);
                 }
-            }
+                loginFile.printArray();
+
         }
         if(successful){
             //TODO: Should pass userID not EMAIL
             Intent intent = new Intent(this, GridActivity.class);
             EditText editText = (EditText) findViewById(R.id.email);
-            String message = editText.getText().toString();
+            String message = editText.getText().toString()+","+String.valueOf(loggedIn);
+            loginFile.closeStreams();
+            loginFile=null;
             intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
         }else{
@@ -131,5 +149,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
 }
+
+
+
+
+
+

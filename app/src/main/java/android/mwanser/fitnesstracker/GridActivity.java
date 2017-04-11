@@ -1,5 +1,6 @@
 package android.mwanser.fitnesstracker;
 
+import android.mwanser.PreferenceUtils;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,8 +26,9 @@ import android.widget.Toast;
 public class GridActivity extends AppCompatActivity {
     public enum ACT { //TODO:convert ints to enums
         EDIT_INFO, CALORIES, BTH_CONNECT, GPS_RUN,
-        WORKOUT, FITNESS_TEST, VIEW_PRIOR, EMPTY
+        WORKOUT, FITNESS_TEST, VIEW_PRIOR, LOGOUT, EMPTY
     };
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     // Keep all Images in array
     public Integer[] mThumbIds = {
             R.mipmap.ic_launcher, R.mipmap.ic_launcher,
@@ -38,6 +40,8 @@ public class GridActivity extends AppCompatActivity {
 //            R.mipmap.ic_launcher, R.mipmap.ic_launcher,
 //            R.mipmap.ic_launcher
     };
+    private String userID;
+
 
     private void sendToNextActivity(int position){
         //TODO: send to each unique activity with MESSAGES
@@ -65,8 +69,10 @@ public class GridActivity extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), ViewWorkout.class);
                 break;
             case 7: //do things for next intent
-
+                intent = new Intent(getApplicationContext(),LoginActivity.class);
+                //TODO: forget who is logged in
                 break;
+
             case 8: //do things for next intent
 
                 break;
@@ -74,6 +80,7 @@ public class GridActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Something Went Wrong",Toast.LENGTH_SHORT).show();
                 break;
         }
+        intent.putExtra(EXTRA_MESSAGE, userID);
         if(intent!=null) startActivity(intent);
 
     }
@@ -83,21 +90,17 @@ public class GridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grid_activity);
         Log.d("**GridActivity","onCreate");
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
         //TODO: should extract user ID and generate previous workouts
 
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), String.valueOf(PreferenceUtils.getUserLoggedIn(getApplicationContext())),Toast.LENGTH_SHORT).show();
         GridView gridView = (GridView) findViewById(R.id.grid_view);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view,
                                     int position, long l){
-                Toast.makeText(getApplicationContext(),String.valueOf(position),
-                    Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(getApplicationContext(),String.valueOf(position),
+//                    Toast.LENGTH_SHORT).show();
                 sendToNextActivity(position);
-
                 }
             }
         );

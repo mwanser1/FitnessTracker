@@ -13,7 +13,7 @@ public class FitnessTest extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_info);
+        setContentView(R.layout.fitness_test);
         Log.d("**FitnessTest","onCreate");
 
     }

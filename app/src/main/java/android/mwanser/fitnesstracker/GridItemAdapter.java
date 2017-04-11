@@ -35,7 +35,8 @@ public class GridItemAdapter extends BaseAdapter {
             "Workout",//4
             "Fitness Test",//5
             "View prior",//6
-            "Empty"//7
+            "Logout",//7
+            "Empty"//8
     };
 
     public GridItemAdapter(Context context, Integer[] mThumbIds) {
