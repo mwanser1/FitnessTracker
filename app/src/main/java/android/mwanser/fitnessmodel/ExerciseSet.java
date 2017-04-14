@@ -16,6 +16,16 @@ public class ExerciseSet implements Serializable {
     private int restSeconds;
     private String cadence;
 
+    public ExerciseSet(){
+        name="test";
+        description="test";
+        weight=1;
+        reps=1;
+        restSeconds=1;
+        cadence="test";
+
+    }
+
     public ExerciseSet(String name, String description, int weight, int reps, int restSeconds,
                        String cadence){
         this.name=name;

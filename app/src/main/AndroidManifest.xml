@@ -36,15 +36,10 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="Login Fitness Tracker"
-
-           >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:label="Fitness Tracker"
+            android:parentActivityName=".SplashScreen">
         </activity>
+
         <activity
             android:name=".CalorieView"
             android:label="Calorie View"
@@ -68,7 +63,13 @@
         <activity
             android:name=".PerformWorkout"
             android:label="Lift Brah"
-            android:parentActivityName=".GridActivity">
+            android:parentActivityName=".GridActivity"
+            android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".ViewWorkout"
@@ -84,6 +85,17 @@
             android:name=".RegisterNewClient"
             android:label="Register New Client"
             android:parentActivityName=".LoginActivity">
+        </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:label="FitnessTracker"
+            >
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
     </application>
