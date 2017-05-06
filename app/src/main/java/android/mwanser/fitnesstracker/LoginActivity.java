@@ -2,7 +2,7 @@ package android.mwanser.fitnesstracker;
 
 import android.content.Intent;
 import android.mwanser.PreferenceUtils;
-import android.os.Environment;
+import android.mwanser.fitnessmodel.Person;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -15,14 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -41,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
     private static final ArrayList<String[]> FAKE_CRED= new ArrayList<>();
-    private FileManipulator loginFile;
+    private LoginFileManipulator loginFile;
 
 
     @Override
@@ -49,12 +41,24 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
         Log.d("**LoginActivity","onCreate");
+        //Reset pref utils
+
         PreferenceUtils.setUserLoggedIn(this,-1);
+        PreferenceUtils.setAgeUser(this,-1);
+        PreferenceUtils.setEmail(this,null);
+        PreferenceUtils.setGender(this,-1);
+        PreferenceUtils.setHeight(this,null);
+        PreferenceUtils.setRestingHr(this,-1);
+        PreferenceUtils.setUnit(this,-1);
+        PreferenceUtils.setVo2(this,-1);
+        PreferenceUtils.setWeight(this, -1);
+        PreferenceUtils.setPW(this,null);
+        //--
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        loginFile= new FileManipulator("loginCred.txt");
+        loginFile= new LoginFileManipulator("loginCred.txt");
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -116,6 +120,18 @@ public class LoginActivity extends AppCompatActivity {
                 if(loggedIn!=-1) {
                     successful = true;
                     PreferenceUtils.setUserLoggedIn(this,loggedIn);
+                    Person temp = loginFile.getPerson();
+                    PreferenceUtils.setAgeUser(this,temp.getAge());
+                    PreferenceUtils.setEmail(this,temp.getEmail());
+                    PreferenceUtils.setGender(this,temp.getGender());
+                    PreferenceUtils.setHeight(this,temp.getHeight());
+                    PreferenceUtils.setRestingHr(this,temp.getRestingHr());
+                    PreferenceUtils.setUnit(this,temp.getUnit());
+                    PreferenceUtils.setVo2(this,temp.getVo2());
+                    Log.e("88888",String.valueOf(temp.getWeight()));
+                    PreferenceUtils.setWeight(this, temp.getWeight());
+                    PreferenceUtils.setPW(this,temp.getPassword());
+
                 }
                 loginFile.printArray();
 

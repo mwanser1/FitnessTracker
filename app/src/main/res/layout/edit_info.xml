@@ -17,7 +17,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:id="@+id/edit_lbl_email1"
                 android:text="Email"/>
@@ -33,14 +33,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:id="@+id/edit_lbl_Opassword"
                 android:text="Old Password"/>
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
-                android:id="@+id/edit_text_Opassword"/>
+                android:id="@+id/edit_text_Opassword"
+                android:inputType="textPassword"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,14 +49,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:id="@+id/edit_lbl_password"
                 android:text="New Password"/>
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
-                android:id="@+id/edit_text_password"/>
+                android:id="@+id/edit_text_password"
+                android:inputType="textPassword"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,14 +65,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:id="@+id/edit_lbl_password2"
                 android:text="Confrim Password"/>
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
-                android:id="@+id/edit_text_password2"/>
+                android:id="@+id/edit_text_password2"
+                android:inputType="textPassword"/>
         </LinearLayout>
 
         <LinearLayout
@@ -78,7 +81,7 @@
             android:layout_height="75dp"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:text="Age:"/>
             <Spinner
@@ -126,7 +129,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:id="@+id/edit_lbl_resting_hr"
                 android:text="Resting Heart Rate"/>
@@ -143,7 +146,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:id="@+id/edit_lbl_votwo"
                 android:text="VO2 MAX"/>
@@ -151,6 +154,23 @@
                 android:layout_width="fill_parent"
                 android:layout_height="75dp"
                 android:id="@+id/edit_text_votwo"
+                android:inputType="number"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+
+                android:text="Weight"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="75dp"
+                android:id="@+id/edit_text_weight"
                 android:inputType="number"/>
 
         </LinearLayout>

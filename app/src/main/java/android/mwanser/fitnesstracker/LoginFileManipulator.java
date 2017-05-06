@@ -1,5 +1,7 @@
 package android.mwanser.fitnesstracker;
 
+import android.mwanser.PreferenceUtils;
+import android.mwanser.fitnessmodel.Person;
 import android.os.Environment;
 import android.util.Log;
 
@@ -17,7 +19,7 @@ import java.util.ArrayList;
  * Created by Wanser on 4/10/17.
  */
 
-public class FileManipulator {
+public class LoginFileManipulator {
     private boolean failedWrite=false;
     private boolean failedRead=false;
     private boolean failedOpen=false;
@@ -29,9 +31,10 @@ public class FileManipulator {
     private FileInputStream fis=null;
     private BufferedReader reader=null;
     private ArrayList<String[]> theUsers= null;
+    private Person current=null;
 
 
-    public FileManipulator(){
+    public LoginFileManipulator(){
 
     }
 
@@ -39,13 +42,14 @@ public class FileManipulator {
      * constructor
      * @param fileName - file to open for manipulating
      */
-    public FileManipulator(String fileName){
+    //TODO should be internal storage
+    public LoginFileManipulator(String fileName){
         boolean success=true;
 
         try {
             myFile = new File(Environment.getExternalStorageDirectory(), fileName);
         }catch(Exception e){
-            Log.e("FileManipulator","Error opening file");
+            Log.e("LoginFileManipulator","Error opening file");
             e.printStackTrace();
             failedOpen=true;
         }
@@ -57,12 +61,12 @@ public class FileManipulator {
             }
         try{ //try reading to the file
             theUsers=new ArrayList<>();
+            //users = new ArrayList<>();
             String temp="";
             fis=new FileInputStream(myFile);
             reader = new BufferedReader(new InputStreamReader(fis));
             while((temp=reader.readLine())!=null) {
                 theUsers.add(temp.split(","));
-
             }
 
         } //errors incurred while writing to file
@@ -91,6 +95,27 @@ public class FileManipulator {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    public boolean appendPerson(Person p){
+        boolean success= true;
+        try{
+            fos=new FileOutputStream(myFile,true);
+            outWriter = new OutputStreamWriter(fos);
+            outWriter.append(p.write());
+            outWriter.flush();
+            outWriter.close();
+            fos.close();
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+            success=false;
+        }
+        catch (IOException e){
+            e.printStackTrace();
+            success=false;
+        }
+        return success;
+
     }
 
     /**
@@ -126,7 +151,7 @@ public class FileManipulator {
             e.printStackTrace();
             success=false;
         }
-        return true;
+        return success;
     }
 
     /**
@@ -139,8 +164,19 @@ public class FileManipulator {
         int line =0;
         for (String[] s : theUsers){
             if(email.equals(s[0].trim()))
-                if(pw.equals(s[1].trim()))
+                if(pw.equals(s[1].trim())){
+                    current= new Person(
+                            Integer.parseInt(s[4]),
+                            Integer.parseInt(s[8]),
+                            Integer.parseInt(s[2]),
+                            s[3],
+                            Integer.parseInt(s[7]),
+                            Integer.parseInt(s[6]),
+                            s[0],
+                            s[1],
+                            Integer.parseInt(s[5]));
                     return line;
+            }
                 else
                     return -1;
             line++;
@@ -158,6 +194,71 @@ public class FileManipulator {
             temp="";
 
         }
+    }
+    public void rewriteFile(Person u, int i){
+        overwrite(u,i);
+
+    }
+    private void overwrite(Person u, int i){
+        int line=0;
+        try{
+            fos=new FileOutputStream(myFile,false);
+            outWriter = new OutputStreamWriter(fos);
+            for(String[] s : theUsers){
+                if(line==i){
+                    outWriter.write(u.write());
+                }
+                else{
+                    outWriter.write(s[0]);
+                    outWriter.write(",");
+                    outWriter.write(s[1]);
+                    outWriter.write(",");
+                    outWriter.write(s[2]);
+                    outWriter.write(",");
+                    outWriter.write(s[3]);
+                    outWriter.write(",");
+                    outWriter.write(s[4]);
+                    outWriter.write(",");
+                    outWriter.write(s[5]);
+                    outWriter.write(",");
+                    outWriter.write(s[6]);
+                    outWriter.write(",");
+                    outWriter.write(s[7]);
+                    outWriter.write(",");
+                    outWriter.write(s[8]);
+                    outWriter.write(",");
+                    outWriter.write(s[9]);
+                    outWriter.write("\n");
+                }
+                line++;
+
+            }
+
+            outWriter.flush();
+            outWriter.close();
+            fos.close();
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        
+
+    }
+    public boolean getCurrentPassword(String p){
+        if(current!=null) if (p == current.getPassword()) return true;
+        else {
+            return false;
+        }
+        else return  false;
+    }
+    public Person getPerson(){
+
+        return current;
+
     }
 
 

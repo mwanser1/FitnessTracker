@@ -27,6 +27,119 @@ public class PreferenceUtils {
     private static final String KEY_USER_LEARNED_NAVIGATION = "user_learned_navigation";
     private static final String KEY_USER_LEARNED_PRESS_CUTTINGS_WARING= "user_learned_press_cuttings_warning";
     private static final String KEY_USER_LOGGED_IN="user_logged_in";
+    private  static final String KEY_AGE_USER="user_age";
+    private  static final String KEY_RESTING_HR="user_resting_hr";
+    private  static final String KEY_WEIGHT="user_weight";
+    private  static final String KEY_HEIGHT="user_height";
+    private  static final String KEY_UNIT="user_unit";
+    private  static final String KEY_EMAIL="user_email";
+    private  static final String KEY_PASSWORD="user_password";
+    private  static final String KEY_VO2="user_vo2";
+    private  static final String KEY_GENDER="user_gender";
+
+    public static void setPW(Context context, String p){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putString(KEY_PASSWORD, p).apply();
+
+    }
+    public static String getPw(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(KEY_PASSWORD, null);
+
+    }
+
+
+
+    public static void setGender(Context context, int g){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putInt(KEY_GENDER, g).apply();
+
+    }
+    public static int getGender(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY_GENDER, -1);
+
+    }
+
+    public static void setVo2(Context context, int v){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putInt(KEY_VO2, v).apply();
+
+    }
+    public static int getVo2(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY_VO2, -1);
+
+    }
+
+
+
+    public static void setEmail(Context context, String e){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putString(KEY_EMAIL, e).apply();
+
+    }
+    public static String getEmail(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(KEY_EMAIL, null);
+
+    }
+
+    public static void setUnit(Context context, int u){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putInt(KEY_UNIT, u).apply();
+
+    }
+    public static int getUnit(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY_UNIT, -1);
+
+    }
+
+    public static void setHeight(Context context, String h){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putString(KEY_HEIGHT, h).apply();
+
+    }
+    public static String getHeight(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(KEY_HEIGHT, null);
+
+    }
+
+    public static void setRestingHr(Context context, int hr){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putInt(KEY_RESTING_HR, hr).apply();
+
+    }
+    public static int getRestingHr(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY_RESTING_HR, -1);
+
+    }
+    public static void setWeight(Context context, int w){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putInt(KEY_WEIGHT, w).apply();
+
+    }
+    public static int getWeight(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY_WEIGHT, -1);
+
+    }
+
+
+
+    public static void setAgeUser(Context context, int age){
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit().putInt(KEY_AGE_USER, age).apply();
+
+    }
+    public static int getAgeUser(Context context) {
+
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY_AGE_USER, -1);
+
+    }
 
 
 

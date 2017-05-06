@@ -3,6 +3,11 @@ package android.mwanser.fitnessmodel;
 import java.io.Serializable;
 
 /**
+ *
+ * Daa class for holding exercise + reps+weight+rest infromation
+ * used in perform workout
+ *
+ *
  * Created by Wanser on 4/10/17.
  */
 

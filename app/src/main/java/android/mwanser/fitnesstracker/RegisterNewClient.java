@@ -1,7 +1,6 @@
 package android.mwanser.fitnesstracker;
 
 import android.content.Intent;
-import android.mwanser.PreferenceUtils;
 import android.mwanser.fitnessmodel.Person;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +53,7 @@ public class RegisterNewClient extends AppCompatActivity {
     private EditText   mWeightText;
     private View focusView;
     private String toastMessage;
-    private FileManipulator loginFile;
+    private LoginFileManipulator loginFile;
 
 
 
@@ -65,7 +64,7 @@ public class RegisterNewClient extends AppCompatActivity {
         setContentView(R.layout.register_new_client);
         Log.d("**RegisterNewClient","onCreate");
 
-        loginFile=new FileManipulator("loginCred.txt");
+        loginFile=new LoginFileManipulator("loginCred.txt");
         //save button-- handles checking and writing to file
         mSaveButon = (Button) findViewById(R.id.register_button_save);
         mSaveButon.setOnClickListener(new View.OnClickListener() {
@@ -230,9 +229,11 @@ public class RegisterNewClient extends AppCompatActivity {
 
         //if i get here then all input is valid
         if(succesful){
-            boolean createdSuccess=loginFile.writeToFile(email1,pw1,weight,height,age,gender,unit);
+            Person p = new Person(age,0,weight,height,0,unit,email1,pw1,gender);
+            //boolean createdSuccess=loginFile.writeToFile(email1,pw1,weight,height,age,gender,unit);
 //            String message = new String(email1+","+pw1+","+weight.toString()+","+
 //                    age.toString()+","+height+","+gender+","+unit);
+            boolean createdSuccess=loginFile.appendPerson(p);
             //TODO: write to file---- check if duplicate user
             if(createdSuccess) {
 //                intent.putExtra(EXTRA_MESSAGE, message);

@@ -2,24 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.mwanser.fitnesstracker">
 
-    <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="22"/>
+
+    <!--<uses-sdk-->
+        <!--android:minSdkVersion="15"-->
+        <!--android:targetSdkVersion="25"/>-->
 
     <!--PERMISSIONS NEEDED FOR FUNCTIOANLITY-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.BODY_SENSORS"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <!--FEATURES NEEDED-->
-    <!--<uses-feature android:name="anddroid.hardware.location.gps" -->
-        <!--android:required="true"/>-->
-    <!--<uses-feature android:glEsVersion="0x00020000" android:required="true"/>-->
+    <uses-feature android:name="anddroid.hardware.location.gps"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+        android:required="true"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -28,6 +34,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC-TpF2KfzB0Le21DkMlcAvuvoenwXwoz8"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <activity
             android:name=".GridActivity"
             android:label="Fitness Tracker Main"
@@ -37,7 +49,8 @@
         <activity
             android:name=".LoginActivity"
             android:label="Fitness Tracker"
-            android:parentActivityName=".SplashScreen">
+            android:parentActivityName=".SplashScreen"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
@@ -48,7 +61,8 @@
         <activity
             android:name=".EditInfo"
             android:label="Edit Personal Information"
-            android:parentActivityName=".GridActivity">
+            android:parentActivityName=".GridActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".FitnessTest"
@@ -58,7 +72,9 @@
         <activity
             android:name=".PerformGPSRun"
             android:label="Run Brah"
-            android:parentActivityName=".GridActivity">
+            android:parentActivityName=".GridActivity"
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".PerformWorkout"
@@ -70,11 +86,13 @@
 
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
+
         </activity>
         <activity
             android:name=".ViewWorkout"
             android:label="View Prior Workouts"
-            android:parentActivityName=".GridActivity">
+            android:parentActivityName=".GridActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         </activity>
         <activity
             android:name=".BluetoothConnect"
@@ -84,12 +102,12 @@
         <activity
             android:name=".RegisterNewClient"
             android:label="Register New Client"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".SplashScreen"
-            android:label="FitnessTracker"
-            >
+            android:label="FitnessTracker">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -97,6 +115,9 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".ViewOneWorkout"
+            android:label="Your Workout"
+            android:parentActivityName=".ViewWorkout"></activity>
 
     </application>
 

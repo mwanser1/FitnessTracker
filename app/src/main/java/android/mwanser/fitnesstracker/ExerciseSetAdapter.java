@@ -9,11 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 /**
+ * Class that handles adapting ExerciseSet class objects to list view
  * Created by Wanser on 4/10/17.
  */
 

@@ -15,4 +15,5 @@
         completions."</string>
     <string name="error_login_failed">Error Logging in.</string>
     <string name="credential_failed">Credentials Failed</string>
+    <string name="start_tracking">Start Running</string>
 </resources>

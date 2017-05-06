@@ -3,6 +3,10 @@ package android.mwanser.fitnessmodel;
 import java.util.ArrayList;
 
 /**
+ * this is a data class for holding exercises,
+ * which populate a exercise set(has more unique data)
+ * populated from Exercises.db in perform workout
+ *
  * Created by Wanser on 4/11/17.
  */
 

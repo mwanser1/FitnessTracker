@@ -17,6 +17,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 /**
+ *
+ * Class that opens the Exercise DB from assets folder and stores locally
+ *
+ * No data manipulation allowed, read only
+ *
  * Created by Wanser on 4/11/17.
  */
 
@@ -41,20 +46,21 @@ public class ExerciseDataBaseHelper extends SQLiteOpenHelper {
     public ExerciseDataBaseHelper(Context context) {
 
         super(context, DB_NAME, null, 1);
+       // DB_PATH=context.getFilesDir().getPath()+"/databases/";
         this.myContext = context;
 
     }
     public void createDataBase(){
         try {
 
-            String destPath = "/data/data/" + myContext.getPackageName()
-                    + "/databases/Exercises.db";
+            String destPath = myContext.getFilesDir().getPath()+"/Exercises.db";
 
             File f = new File(destPath);
             if(!f.exists()){
                 Log.v(TAG,"File Not Exist");
 
                 InputStream in = myContext.getAssets().open("Exercises.db");
+                Log.e("_____",String.valueOf(in.available()));
                 OutputStream out = new FileOutputStream(destPath);
 
                 byte[] buffer = new byte[1024];
@@ -79,98 +85,14 @@ public class ExerciseDataBaseHelper extends SQLiteOpenHelper {
     public void openDataBase(){
         try{
             String myPath = DB_PATH + DB_NAME;
-           myDataBase=SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+           myDataBase=SQLiteDatabase.openDatabase(myContext.getFilesDir().getPath()+"/Exercises.db", null, SQLiteDatabase.OPEN_READONLY);
+            Log.e("----","opened");
         } catch (Exception e){
             Log.e(TAG,"error opening database");
             e.printStackTrace();
         }
     }
-    public ArrayList<Exercise> returnArrayListExercise(String sql){
-        Cursor cursor=null;
-        ArrayList<Exercise> temp=new ArrayList<>();
-        String name="";
-        String musclesUsed="";
-        String additionalMuscles="";
-        int _id=0;
-        String category="";
-        String description="";
-        ArrayList<Integer> added=new ArrayList<>();
-        boolean alreadyIn=false;
 
-        Log.d(TAG,myDataBase.toString());
-        if(myDataBase!=null){
-            try{
-                cursor = myDataBase.rawQuery(sql, null);
-            } catch (Exception e){
-                Log.e(TAG, "Error doing the array list");
-                e.printStackTrace();
-            }
-            if(cursor!=null){
-                cursor.moveToFirst();
-
-                do{
-                    try {
-                        //TODO DOESNT WORK
-                        alreadyIn=false;
-                        Log.e(TAG,String.valueOf(temp.size()));
-                        Log.e(TAG,String.valueOf(cursor.getPosition()));
-//                        for (String s:cursor.getColumnNames())Log.e(TAG,s);
-                        name = cursor.getString(0);
-                        musclesUsed = cursor.getString(4);
-                        additionalMuscles= cursor.getString(5);
-                        _id = cursor.getInt(1);
-                        category = cursor.getString(2);
-                        description = cursor.getString(3);
-                    }catch (Exception e){
-                        Log.e(TAG,"Error getting column names");
-                        e.printStackTrace();
-                    }
-
-                    if(temp.size()==0) {
-                        Log.e(TAG,"Adding first item");
-                        ArrayList<String> temp2= new ArrayList<>();
-                        temp2.add(additionalMuscles);
-                        temp.add(new Exercise(name, musclesUsed, temp2,_id,
-                            category,description));
-                        added.add(_id);
-                    }
-                    else {
-//                        for(Exercise i:temp){
-//                            if (i.get_id() == _id){
-//                                ArrayList<String> temp2= new ArrayList<>();
-//                                temp2=i.getAdditionalMuscles();
-//                                temp2.add(additionalMuscles);
-//                                i.setAdditionalMuscles(temp2);
-//                                alreadyIn=true;
-//                                Log.e(TAG,"addeded additional muscle group");
-//                                break;
-//                            }
-//                        }
-                        //TODO PROBLEM with how muslce groups are stored
-                        //TODO only getting 101 exercises should have 260
-                        if(!alreadyIn){
-                            Log.e(TAG,"adding new execise");
-                            ArrayList<String> temp2= new ArrayList<>();
-                            temp2.add(additionalMuscles);
-                            temp.add(new Exercise(name, musclesUsed, temp2,_id,
-                                    category,description));
-
-                            added.add(_id);
-                        }
-
-
-                    }
-
-                }while(cursor.moveToNext());}
-
-        }
-        else return null;
-        for(Exercise item : temp)
-            Log.d(TAG,item.toString());
-        if (cursor!=null) cursor.close();
-        return temp;
-
-    }
     public void closeAll(){
         myDataBase.close();
     }

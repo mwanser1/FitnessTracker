@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/exercise_set_item_name"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -30,17 +31,20 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/exercise_set_item_weight"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 android:text=" for "
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:id="@+id/exercise_set_item_reps"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
